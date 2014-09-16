@@ -10,3 +10,6 @@ C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\obj\Debug\scratchpad.cs
 C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\bin\Debug\scratchpad.exe.config
 C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\bin\Debug\scratchpad.exe
 C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\bin\Debug\scratchpad.pdb
+C:\Users\tsmith12\Documents\GitHub\Algorithms\btree\bin\Debug\scratchpad.exe.config
+C:\Users\tsmith12\Documents\GitHub\Algorithms\btree\obj\Debug\scratchpad.exe
+C:\Users\tsmith12\Documents\GitHub\Algorithms\btree\obj\Debug\scratchpad.pdb

@@ -213,3 +213,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+*.exe
+btree/obj/Debug/scratchpad.pdb
+btree/obj/Debug/scratchpad.exe
+btree/obj/Debug/scratchpad.csprojResolveAssemblyReference.cache
+btree/obj/Debug/scratchpad.csproj.FileListAbsolute.txt
+btree/bin/Debug/scratchpad.pdb
+btree/bin/Debug/scratchpad.exe

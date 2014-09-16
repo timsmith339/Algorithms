@@ -19,14 +19,7 @@ namespace scratchpad
                 tree.Add(rnd.Next(0, 15));
             }
             
-            var found = tree.FindMinValue();
-            var count = found.GetRowCountFromRoot();
-
-            while (found != null)
-            {
-                Console.WriteLine(found.Value);
-                found = found.GetNextLargest();
-            }
+            tree.MapTree();
 
             Console.ReadKey();
         }
@@ -35,12 +28,11 @@ namespace scratchpad
     public class BTree
     {
         public BTreeNode Head { get; set; }
-
+        
         public BTreeNode Find(int value)
         {
             return Head.Find(Head, value);
         }
-
         public BTreeNode Add(int value)
         {
             if (Head == null)
@@ -49,23 +41,26 @@ namespace scratchpad
             }
             return Head.Add(Head, value);
         }
-
         public BTreeNode FindMinValue()
         {
             return Head.GetMinValue();
         }
-
         public void MapTree()
         {
-            Head.MapTree();
+            var mapper = new BTreeNodeMapper(Head);
+            mapper.BeginMap();
         }
     }
 
     public class BTreeNode
     {
+        public BTreeNode()
+        {
+            Map = new BTreeNodeMap();
+        }
+
         public int Value { get; set; }
-        public int MapRow { get; set; }
-        public int MapCol { get; set; }
+        public BTreeNodeMap Map { get; set; }
 
         public BTreeNode Parent { get; set; }
         public BTreeNode Left { get; set; }
@@ -148,38 +143,6 @@ namespace scratchpad
 
             return current;            
         }
-        public void MapTree()
-        {
-            MapRow = 1;
-            MapCol = 1;
-
-            BTreeNode current = this;
-
-            current.MapCol = MapCol;
-            current.MapRow = MapRow;
-
-            while (current.Left != null)
-            {
-                current = current.Left;
-                MapRow++;
-                current.MapRow = MapRow;
-
-                if (current.Left == null && current.Right !=  null)
-                {
-                    current = current.Right;
-                    MapRow++;
-                    MapCol++;
-                    current.MapCol = MapCol;
-                    current.MapRow = MapRow;
-                }
-                else if (current.Left == null && current.Right == null)
-                {
-                    current = current.Parent;
-                }
-            }
-
-            
-        }
 
         public void Delete()
         {
@@ -218,4 +181,104 @@ namespace scratchpad
         }
     }
 
+    public class BTreeNodeMapper
+    {
+        private BTreeNode CurrentNode { get; set; }
+        public int CurrentRow { get; set; }
+        public int CurrentCol { get; set; }
+        
+        public BTreeNodeMapper(BTreeNode node)
+        {
+            CurrentNode = node;
+            CurrentCol = 1;
+            CurrentRow = 1;
+        }
+
+        public bool IsLeftOpen()
+        {
+            if (CurrentNode.Left != null
+                && CurrentNode.Left.Map.MapCol == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public bool IsRightOpen()
+        {
+            if (CurrentNode.Right != null
+                && CurrentNode.Right.Map.MapCol == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public bool HasParent()
+        {
+            return CurrentNode.Parent != null;
+        }
+
+        public void BeginMap()
+        {
+            while (IsLeftOpen() || IsRightOpen() || HasParent())
+            {
+                if (IsLeftOpen())
+                {
+                    MoveLeft();
+                    continue;
+                }
+
+                if (IsRightOpen())
+                {
+                    MoveRight();
+                    continue;
+                }
+
+                Map();
+
+                if (HasParent())
+                {
+                    MoveUp();
+                }
+            }
+
+            Map();
+        }
+        public void MoveLeft()
+        {
+            CurrentRow++;
+            CurrentNode = CurrentNode.Left;
+        }
+        public void MoveRight()
+        {
+            CurrentRow++;
+            CurrentCol++;
+            CurrentNode = CurrentNode.Right;
+        }
+        public void MoveUp()
+        {
+            CurrentRow--;
+            if (CurrentNode.Parent.Right != null)
+            {
+                if (CurrentNode.Parent.Right.Value == CurrentNode.Value)
+                {
+                    CurrentCol--;
+                }
+            }
+            CurrentNode = CurrentNode.Parent;
+        }
+
+        public void Map()
+        {
+            CurrentNode.Map.MapCol = CurrentCol;
+            CurrentNode.Map.MapRow = CurrentRow;
+        }
+    }
+
+    public class BTreeNodeMap
+    {
+        public int? MapRow { get; set; }
+        public int? MapCol { get; set; }
+    }
 }

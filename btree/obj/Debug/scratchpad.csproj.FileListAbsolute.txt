@@ -1,0 +1,12 @@
+c:\users\tsmith12\documents\visual studio 2013\Projects\scratchpad\bin\Debug\scratchpad.exe.config
+c:\users\tsmith12\documents\visual studio 2013\Projects\scratchpad\bin\Debug\scratchpad.exe
+c:\users\tsmith12\documents\visual studio 2013\Projects\scratchpad\bin\Debug\scratchpad.pdb
+c:\users\tsmith12\documents\visual studio 2013\Projects\scratchpad\obj\Debug\scratchpad.csprojResolveAssemblyReference.cache
+c:\users\tsmith12\documents\visual studio 2013\Projects\scratchpad\obj\Debug\scratchpad.exe
+c:\users\tsmith12\documents\visual studio 2013\Projects\scratchpad\obj\Debug\scratchpad.pdb
+C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\obj\Debug\scratchpad.exe
+C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\obj\Debug\scratchpad.pdb
+C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\obj\Debug\scratchpad.csprojResolveAssemblyReference.cache
+C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\bin\Debug\scratchpad.exe.config
+C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\bin\Debug\scratchpad.exe
+C:\Users\Tim\Documents\Visual Studio 2012\Projects\btree\bin\Debug\scratchpad.pdb

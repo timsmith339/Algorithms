@@ -55,28 +55,29 @@ namespace scratchpad
             var rowCount = _nodeList.OrderByDescending(n => n.Map.MapCol).FirstOrDefault().Map.MapCol;
             var center = Convert.ToInt32(Math.Pow(2, (rowCount - 1)));
 
-            for (int x = 1; x <= rowCount; x++)
-            {
-                var nodesInRow = _nodeList.Where(n => n.Map.MapRow == x).ToList();
+            var numList = new List<int>();
 
+            for (int row = 1; row <= rowCount; row++)
+            {
+                var nodesInRow = _nodeList.Where(n => n.Map.MapRow == row).ToList();
+            
                 foreach (var node in nodesInRow)
                 {
-                    var row = node.Map.MapRow;
                     var col = node.Map.MapCol;
-                    var position = (center / xxx(center, row)) + (center / xxx(center, row - 1)) * col - 1;
+
+                    var position = Convert.ToInt32(((center / Math.Pow(2, (row-1))) + ((center / (Math.Pow(2, row-2))) * (col-1))));
+                    numList.Add(position);
                 }
 
             }
 
+            numList.OrderBy(n => n);
 
           
-
+            numList.ForEach(n => Console.WriteLine(n));
         }
 
-        private int xxx(int x, int y)
-        {
-            return Convert.ToInt32(Math.Pow(2, (x - y)));
-        }
+        
     }
 
     public class BTreeNode

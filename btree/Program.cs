@@ -16,9 +16,9 @@ namespace scratchpad
         {
             BTree tree = new BTree();
             Random rnd = new Random();
-            for (int x = 1; x <= 100; x++)
+            for (int x = 1; x <= 1000; x++)
             {
-                tree.Add(rnd.Next(0, 15));
+                tree.Add(rnd.Next(0, 500));
             }
             
             tree.MapTree();
